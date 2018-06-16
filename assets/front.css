@@ -4,3 +4,18 @@
  * @package Wixbu_Course_Manager
  * @version 1.0.0
  */
+.wixbu-cm-content-wrap {
+  padding: 16px 25px;
+  border-radius: 7px;
+  border: 2px solid #777; }
+  .wixbu-cm-content-wrap .course-actions {
+    text-align: center; }
+
+.new-course-button-wrap {
+  text-align: right; }
+
+#new-course-button {
+  width: auto;
+  display: inline-block; }
+
+/*# sourceMappingURL=front.css.map */

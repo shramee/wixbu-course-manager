@@ -67,7 +67,7 @@ class Wixbu_Course_Manager{
 	 */
 	private function __construct( $file ) {
 
-		self::$token   = 'wixbu-course-manager';
+		self::$token   = 'wixbu-cm';
 		self::$file    = $file;
 		self::$url     = plugin_dir_url( $file );
 		self::$path    = plugin_dir_path( $file );
@@ -99,6 +99,7 @@ class Wixbu_Course_Manager{
 
 		//Enqueue front end JS and CSS
 		add_action( 'wp_enqueue_scripts',	array( $this->public, 'enqueue' ) );
+		add_shortcode( 'wixbu-course-manager',	array( $this->public, 'course_manager' ) );
 
 	}
 }

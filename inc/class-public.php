@@ -54,4 +54,12 @@ class Wixbu_Course_Manager_Public{
 		wp_enqueue_style( $token . '-css', $url . '/assets/front.css' );
 		wp_enqueue_script( $token . '-js', $url . '/assets/front.js', array( 'jquery' ) );
 	}
+
+	/**
+	 * Renders wixbu-course-manager shortcode
+	 */
+	public function course_manager() {
+		$this->enqueue();
+		include 'tpl.course-manager.php';
+	}
 }
