@@ -25,11 +25,10 @@
   width: 40px;
   line-height: 36px;
   height: 40px;
-  border: 2px solid;
-  border-radius: 50%;
-  margin-right: 20px; }
+  margin-right: 7px;
+  font-size: 25px; }
 .llms-form-field .social-account .fa + input {
-  width: calc(100% - 70px);
+  width: calc(100% - 52px);
   display: inline-block; }
 
 .instructor-profile .llms-cols-7 {
