@@ -4,6 +4,9 @@
  * @package Wixbu_Course_Manager
  * @version 1.0.0
  */
+.tar {
+  text-align: right; }
+
 .wixbu-cm-content-wrap {
   padding: 16px 25px;
   border-radius: 7px;
@@ -17,5 +20,36 @@
 #new-course-button {
   width: auto;
   display: inline-block; }
+
+.llms-form-field .social-account .fa {
+  width: 40px;
+  line-height: 36px;
+  height: 40px;
+  border: 2px solid;
+  border-radius: 50%;
+  margin-right: 20px; }
+.llms-form-field .social-account .fa + input {
+  width: calc(100% - 70px);
+  display: inline-block; }
+
+.instructor-profile .llms-cols-7 {
+  margin-left: 20.833%; }
+.instructor-profile .llms-form-field.llms-cols-4 {
+  margin-left: 66.6%; }
+
+.profile-photo label {
+  border: 2px solid #999;
+  border-radius: 7px;
+  margin: 16px 0 20px;
+  display: block;
+  padding: 1em;
+  text-align: center; }
+  .profile-photo label .fa {
+    display: inline-block;
+    border-radius: 50%;
+    border: 1px solid #999;
+    width: 2em;
+    line-height: 2em;
+    font-size: 70px; }
 
 /*# sourceMappingURL=front.css.map */

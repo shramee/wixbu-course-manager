@@ -6,7 +6,7 @@
 $tabs = apply_filters( 'wixbu_course_builder_tabs', [
 	'your-courses' => __( 'Your courses', 'wixbu-cm' ),
 	'new-course'   => __( 'New course', 'wixbu-cm' ),
-	'store'        => __( 'Store', 'wixbu-cm' ),
+	'profile'        => __( 'Instructor profile', 'wixbu-cm' ),
 //	'notifications' => __( 'Notifications', 'wixbu-cm' ),
 ] );
 ?>

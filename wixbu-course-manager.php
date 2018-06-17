@@ -22,7 +22,7 @@ require 'inc/class-public.php';
  * @static string $path Plugin root dir path
  * @static string $version Plugin version
  */
-class Wixbu_Course_Manager{
+class Wixbu_Course_Manager {
 
 	/** @var Wixbu_Course_Manager Instance */
 	private static $_instance = null;
@@ -57,6 +57,23 @@ class Wixbu_Course_Manager{
 			self::$_instance = new self( $file );
 		}
 		return self::$_instance;
+	}
+
+	/**
+	 * Get user meta, defaults to current user for user id
+	 * @param string $metakey Meta key to get info for
+	 * @param int $user User ID
+	 * @return mixed|string User meta
+	 */
+	public static function umeta( $metakey, $user = 0 ) {
+		if ( ! $user ) {
+			$user = get_current_user_id();
+		}
+		if ( $user ) {
+			return get_user_meta( $user, $metakey, 'single' );
+		}
+
+		return '';
 	}
 
 	/**
