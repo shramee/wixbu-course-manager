@@ -93,7 +93,8 @@
 
 
 		<div class="instructor-plans llms-cols-7 llms-form-field">
-			<h3><?php _e( 'Membership monthly charges', 'wixbu-cm' ) ?></h3>
+			<h3><?php _e( 'Subscription monthly charges', 'wixbu-cm' ) ?></h3>
+			<h5><?php _e( 'For access to all your courses for a monthly fee', 'wixbu-cm' ) ?></h5>
 			<div class="content">
 				<div class="social-account">
 					<span class="fa fa-euro fa-fw" style="color:#191919;"></span>
