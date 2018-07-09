@@ -1,5 +1,5 @@
 <h1>New course</h1>
-<form action="?tab=new-course">
+<form method="post" action="?tab=edit-course">
 	<div class="llms-form-field llms-cols-8">
 		<input type="text" name="course_title" placeholder="<?php _e( 'Course name', 'wixbu-course-manager' ) ?>">
 	</div>
@@ -9,4 +9,6 @@
 			<?php _e( 'Create', 'wixbu-course-manager' ) ?>
 		</button>
 	</div>
+
+	<input type="hidden" name="create_course" value="<?php echo wp_create_nonce( "create_course" ); ?>">
 </form>

@@ -55,6 +55,33 @@ class Wixbu_Course_Manager_Public{
 		wp_enqueue_script( $token . '-js', $url . '/assets/front.js', array( 'jquery' ) );
 	}
 
+	public function register_tax() {
+		$labels = array(
+			'name'              => _x( 'Software requirements', 'taxonomy general name', 'textdomain' ),
+			'singular_name'     => _x( 'Software requirement', 'taxonomy singular name', 'textdomain' ),
+			'search_items'      => __( 'Search Software requirements', 'textdomain' ),
+			'all_items'         => __( 'All Software requirements', 'textdomain' ),
+			'parent_item'       => __( 'Parent Software requirement', 'textdomain' ),
+			'parent_item_colon' => __( 'Parent Software requirement:', 'textdomain' ),
+			'edit_item'         => __( 'Edit Software requirement', 'textdomain' ),
+			'update_item'       => __( 'Update Software requirement', 'textdomain' ),
+			'add_new_item'      => __( 'Add New Software requirement', 'textdomain' ),
+			'new_item_name'     => __( 'New Software requirement Name', 'textdomain' ),
+			'menu_name'         => __( 'Software requirement', 'textdomain' ),
+		);
+
+		$args = array(
+			'hierarchical'      => false,
+			'labels'            => $labels,
+			'show_ui'           => true,
+			'show_admin_column' => true,
+			'query_var'         => true,
+			'rewrite'           => array( 'slug' => 'software_req' ),
+		);
+
+		register_taxonomy( 'software_req', array( 'course' ), $args );
+	}
+
 	/**
 	 * Renders wixbu-course-manager shortcode
 	 */

@@ -1,5 +1,23 @@
 <h1>Your Courses</h1>
 <?php
+if ( isset( $_GET['action'] ) && isset( $_GET['nonce'] ) && isset( $_GET['c'] ) ) {
+	$action = $_GET['action'];
+	$course = $_GET['c'];
+	if ( wp_verify_nonce( $_GET['nonce'], "course_action_$course" ) ) {
+		switch ( $action ) {
+			case 'delete':
+				wp_delete_post( $course, true );
+				break;
+			case 'publish':
+				wp_update_post( array(
+					'ID'          => $course,
+					'post_status' => 'publish'
+				) );
+				break;
+		}
+	}
+}
+
 $query = new WP_Query( [
 	'post_type' => 'course',
 	'status' => 'any',
@@ -18,6 +36,10 @@ $query = new WP_Query( [
 
 					/** @var WP_Post $post */
 					global $post;
+
+					$id = $post->ID;
+
+					$course_nonce = 'nonce=' . wp_create_nonce( "course_action_$id" );
 
 					$course = new LLMS_Course( $post );
 
@@ -38,9 +60,12 @@ $query = new WP_Query( [
 							</a><!-- .llms-loop-link -->
 						</div><!-- .llms-loop-item-content -->
 						<div class="course-actions course-<?php echo get_post_status() ?>">
-							<a href="?course=<?php the_ID() ?>&action=edit"><?php _e( 'edit', 'wixbu-course-manager' ) ?></a> <span class="sep">|</span>
-							<a href="?course=<?php the_ID() ?>&action=delete"><?php _e( 'delete', 'wixbu-course-manager' ) ?></a> <span class="sep">|</span>
-							<a href="?course=<?php the_ID() ?>&action=publish"><?php _e( 'publish', 'wixbu-course-manager' ) ?></a>
+							<a href="<?php echo "?c=$id&tab=edit-course" ?>">
+								<?php _e( 'edit', 'wixbu-cm' ) ?></a> <span class="sep">|</span>
+							<a href="<?php echo "?c=$id&$course_nonce&action=delete" ?>" data-confirm="<?php _e( 'Are you sure you want to delete this course..?', 'wixbu-cm' ) ?>" class="confirm-action">
+								<?php _e( 'delete', 'wixbu-cm' ) ?></a> <span class="sep">|</span>
+							<a href="<?php echo "?c=$id&$course_nonce&action=publish" ?>">
+								<?php _e( 'publish', 'wixbu-cm' ) ?></a>
 						</div>
 					</li>
 					<?php
@@ -56,5 +81,16 @@ $query = new WP_Query( [
 		?>
 	</div>
 </div>
+
+<script>
+	jQuery( function( $ ) {
+		$( '.confirm-action' ).click( function() {
+			if ( ! confirm( $( this ).data( 'confirm' ) ) ) {
+				return false;
+			}
+		} );
+	} )
+</script>
+
 <div class="llms-form-field new-course-button-wrap">
 	<a href="?tab=new-course" class="llms-button-action" id="new-course-button"><?php _e( 'New course' ) ?></a>

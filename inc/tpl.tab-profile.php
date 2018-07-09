@@ -44,7 +44,7 @@
 
 	<h1>Instructor profile</h1>
 
-	<form class="instructor-profile" method="post" enctype="multipart/form-data">
+	<form class="wixbu-cm-center-form" method="post" enctype="multipart/form-data">
 
 		<div class="profile-photo llms-cols-7 llms-form-field">
 			<label>

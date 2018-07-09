@@ -77,6 +77,72 @@ class Wixbu_Course_Manager {
 	}
 
 	/**
+	 * Get post meta, defaults to current post for post id
+	 * @param string $metakey Meta key to get info for
+	 * @param int $post Post ID
+	 * @return mixed|string User meta
+	 */
+	public static function pmeta( $metakey, $post = 0 ) {
+		global $wixbu_cm_meta;
+		if ( $wixbu_cm_meta ) {
+			return empty( $wixbu_cm_meta[ $metakey ] ) ? '' : $wixbu_cm_meta[ $metakey ][0];
+		}
+		if ( ! $post ) {
+			$post = get_the_ID();
+		}
+		if ( $post ) {
+			return get_user_meta( $post, $metakey, 'single' );
+		}
+
+		return '';
+	}
+
+	/**
+	 * Get post meta, defaults to current post for post id
+	 * @param string $metakey Meta key to get info for
+	 * @param int $post Post ID
+	 * @return mixed|string User meta
+	 */
+	public static function pmeta_update( $metakey, $value, $post = 0 ) {
+		global $wixbu_cm_meta;
+
+		$wixbu_cm_meta[ $metakey ][0] = $value;
+		if ( ! $post ) {
+			$post = get_the_ID();
+		}
+		if ( $post ) {
+			return update_post_meta( $post, $metakey, $value );
+		}
+
+		return '';
+	}
+
+	/**
+	 * Get post terms for taxonomy
+	 * @param string $taxonomy Taxonomy
+	 * @param int $post Post ID
+	 * @return mixed|string User meta
+	 */
+	public static function pterms( $taxonomy, $post = 0 ) {
+
+		$terms = wp_get_post_terms( get_the_ID(), $taxonomy );
+
+		$ret = [];
+
+		/** @var WP_Term $term */
+		if ( $terms instanceof WP_Error ) {
+			/** @var WP_Error $term */
+			echo '<h3 style="color: red;">' . $terms->get_error_message() . '</h3>';
+		} else {
+			foreach ( $terms as $term ) {
+				$ret[ $term->term_id ] = $term->name;
+			}
+		}
+
+		return $ret;
+	}
+
+	/**
 	 * Constructor function.
 	 * @param string $file __FILE__ of the main plugin
 	 * @access  private
@@ -116,6 +182,7 @@ class Wixbu_Course_Manager {
 
 		//Enqueue front end JS and CSS
 		add_action( 'wp_enqueue_scripts',	array( $this->public, 'enqueue' ) );
+		add_action( 'init',	array( $this->public, 'register_tax' ) );
 		add_shortcode( 'wixbu-course-manager',	array( $this->public, 'course_manager' ) );
 
 	}

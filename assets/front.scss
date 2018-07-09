@@ -43,7 +43,7 @@
 	}
 }
 
-.instructor-profile {
+.wixbu-cm-center-form {
 	.llms-cols-7 {
 		margin-left: 20.833%;
 	}
@@ -65,5 +65,97 @@
 		width: 2em;
 		line-height: 2em;
 		font-size: 70px;
+	}
+}
+
+#wixbu-cm-edit-course {
+	header {
+		padding: 0 35px;
+		position: relative;
+		text-align: center;
+		border-bottom: 2px solid #ddd;
+		h2, h3 {
+			font-weight: 400;
+			text-transform: uppercase;
+		}
+	}
+
+	section {
+		padding: 2em 0;
+	}
+}
+
+#wixbu-cm form {
+	margin: 0;
+}
+
+#wixbu-cm,
+#vimeo-llms-upload-popup {
+	.button {
+		border: 2px solid;
+		font: inherit;
+		background: #ffffff;
+		color: inherit;
+		border-radius: 7px;
+		margin: 0;
+		width: 100%;
+		display: block;
+		padding: 7px 11px;
+		box-sizing: border-box;
+		text-align: center;
+		cursor: pointer;
+	}
+}
+
+#back-to-edit-couse {
+	color: inherit;
+	position: absolute;
+	left: 0;
+	top: 22px;
+	transform: translateY( -50% );
+	width: 25px;
+}
+
+div.course-edit-section {
+	font-size: 20px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	padding: 1.6em 0;
+	line-height: 40px;
+	max-width: 320px;
+	margin: auto;
+	float: none;
+	&:last-child {
+		border-bottom: none;
+	}
+	#wixbu-cm-edit-course & a {
+		font: inherit;
+		color: inherit;
+		line-height: 40px;
+	}
+	.course-edit-section-status {
+		font-size: 40px;
+		float: right;
+	}
+	.vimeo-llms-hd-video-wrap, img {
+		width: 250px;
+		margin: 0 auto 1.6em;
+		display: block;
+	}
+}
+
+[for="wixbu-feat-img"] .fa-spin {
+	display: none;
+	form.uploading & {
+		display: inline-block;
+	}
+}
+
+#vimeo-llms-upload-popup {
+	.postbox {
+		background: #fff;
+	}
+	.button-pick-file, .button-pick-file:hover {
+		color: #555;
 	}
 }

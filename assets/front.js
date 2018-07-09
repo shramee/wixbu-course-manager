@@ -4,8 +4,13 @@
  * @package Wixbu_Course_Manager
  * @version 1.0.0
  */
-jQuery(function ($) {
+jQuery( function ( $ ) {
 
-    //Put all jquery code in here
+	var
+		$input = $( '#wixbu-feat-img' );
 
-});
+	$input.change( function () {
+		$input.closest( 'form' ).addClass( 'uploading' ).submit();
+	} );
+
+} );
