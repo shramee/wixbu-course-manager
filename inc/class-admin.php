@@ -54,5 +54,26 @@ class Wixbu_Course_Manager_Admin {
 
 		wp_enqueue_style( $token . '-css', $url . '/assets/admin.css' );
 		wp_enqueue_script( $token . '-js', $url . '/assets/admin.js', array( 'jquery' ) );
+
+		$this->maybe_hide_admin_bar();
+	}
+
+	private function maybe_hide_admin_bar() {
+
+		if ( isset( $_REQUEST['no_admin_bar'] ) ) {
+			wp_add_inline_style(
+				$this->token . '-css',
+				'html.wp-toolbar{
+					padding-top: 0;
+				}
+				.wp-toolbar #wixbu-cm-edit-course section, .wp-toolbar .wrap.lifterlms.llms-builder .llms-builder-sidebar {
+					margin-top: 0 !important;
+					top: 0;
+				}
+				div#wpadminbar {
+					display: none;
+				}'
+			);
+		}
 	}
 }

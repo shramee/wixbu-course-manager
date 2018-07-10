@@ -91,7 +91,7 @@
 
 #wixbu-cm,
 #vimeo-llms-upload-popup {
-	.button {
+	.button, .button-like {
 		border: 2px solid;
 		font: inherit;
 		background: #ffffff;
@@ -103,7 +103,14 @@
 		padding: 7px 11px;
 		box-sizing: border-box;
 		text-align: center;
+		text-transform: uppercase;
+	}
+	.button {
 		cursor: pointer;
+	}
+
+	.llms-form-field .button {
+		margin: 16px 0 20px;
 	}
 }
 
@@ -158,4 +165,9 @@ div.course-edit-section {
 	.button-pick-file, .button-pick-file:hover {
 		color: #555;
 	}
+}
+
+iframe#wixbu-cm-course-structure {
+	width: 100%;
+	height: 700px;
 }

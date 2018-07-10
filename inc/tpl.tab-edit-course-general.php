@@ -1,6 +1,6 @@
 <?php
 global $wixbu_cm_meta;
-if ( ! empty( $_POST['save'] ) && wp_verify_nonce( $_POST['save'], 'wixbu-cm-save-user-data' ) ) {
+if ( ! empty( $_POST['save'] ) && wp_verify_nonce( $_POST['save'], 'wixbu-cm-course-genral' ) ) {
 	$metadata = [
 		'course-desc-about',
 		'course-desc-learn',
@@ -19,11 +19,15 @@ if ( ! empty( $_POST['save'] ) && wp_verify_nonce( $_POST['save'], 'wixbu-cm-sav
 	];
 
 	foreach ( $id_taxes as $tax ) {
-		wp_set_post_terms( get_the_ID(), [ +$_POST['course-tax'][ $tax ] ], $tax );
+		if ( $_POST['course-tax'][ $tax ] ) {
+			wp_set_post_terms( get_the_ID(), [ +$_POST['course-tax'][ $tax ] ], $tax );
+		}
 	}
 
 	foreach ( $text_taxes as $tax ) {
-		wp_set_post_terms( get_the_ID(), $_POST['course-tax'][ $tax ], $tax );
+		if ( $_POST['course-tax'][ $tax ] ) {
+			wp_set_post_terms( get_the_ID(), $_POST['course-tax'][ $tax ], $tax );
+		}
 	}
 
 	foreach ( $metadata as $metadatum ) {
@@ -38,9 +42,6 @@ if ( ! empty( $_POST['save'] ) && wp_verify_nonce( $_POST['save'], 'wixbu-cm-sav
 	] );
 }
 ?>
-
-<h1>Instructor profile</h1>
-
 <form class="wixbu-cm-center-form" method="post" enctype="multipart/form-data">
 
 	<div class="llms-cols-7 llms-form-field">
@@ -52,7 +53,6 @@ if ( ! empty( $_POST['save'] ) && wp_verify_nonce( $_POST['save'], 'wixbu-cm-sav
 		<label><?php _e( 'What is this course about?', 'wixbu-cm' ) ?></label>
 		<textarea required="required" type="text" name="course-desc-about"><?php echo Wixbu_Course_Manager::pmeta( 'course-desc-about' ); ?></textarea>
 	</div>
-
 
 	<div class="llms-cols-7 llms-form-field">
 		<label><?php _e( 'What will your students learn?', 'wixbu-cm' ) ?></label>
@@ -72,7 +72,7 @@ if ( ! empty( $_POST['save'] ) && wp_verify_nonce( $_POST['save'], 'wixbu-cm-sav
 	<div class="llms-cols-7 llms-form-field">
 		<label><?php _e( 'Course level', 'wixbu-cm' ) ?></label>
 		<select required="required" name="course-tax[course_difficulty]">
-			<option><?php _e( 'Please choose...', 'wixbu-cm' ) ?></option>
+			<option value=""><?php _e( 'Please choose...', 'wixbu-cm' ) ?></option>
 			<?php
 			$val = Wixbu_Course_Manager::pterms( 'course_difficulty' );
 			$terms = get_terms( array(
@@ -92,7 +92,7 @@ if ( ! empty( $_POST['save'] ) && wp_verify_nonce( $_POST['save'], 'wixbu-cm-sav
 	<div class="llms-cols-7 llms-form-field">
 		<label><?php _e( 'Software requirement', 'wixbu-cm' ) ?></label>
 		<?php $val = implode( ', ', Wixbu_Course_Manager::pterms( 'software_req' ) ); ?>
-		<input required="required" type="text" name="course-tax[software_req]" value="<?php echo $val; ?>"
+		<input type="text" name="course-tax[software_req]" value="<?php echo $val; ?>"
 					 placeholder="<?php _e( 'Software requirement (comma separated)', 'wixbu-cm' ) ?>">
 	</div>
 
@@ -125,7 +125,7 @@ if ( ! empty( $_POST['save'] ) && wp_verify_nonce( $_POST['save'], 'wixbu-cm-sav
 	</div>
 
 	<div class="llms-form-field llms-cols-4">
-		<button name="save" value="<?php echo wp_create_nonce( 'wixbu-cm-save-user-data' ) ?>" type="submit" class="llms-button-action">
+		<button name="save" value="<?php echo wp_create_nonce( 'wixbu-cm-course-genral' ) ?>" type="submit" class="llms-button-action">
 			<?php _e( 'Save', 'wixbu-course-manager' ) ?>
 		</button>
 	</div>

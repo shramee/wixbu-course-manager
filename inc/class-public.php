@@ -52,6 +52,7 @@ class Wixbu_Course_Manager_Public{
 		$url = $this->url;
 
 		wp_enqueue_style( $token . '-css', $url . '/assets/front.css' );
+
 		wp_enqueue_script( $token . '-js', $url . '/assets/front.js', array( 'jquery' ) );
 	}
 

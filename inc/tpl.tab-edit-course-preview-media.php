@@ -23,6 +23,7 @@ if ( class_exists( 'Vimeo_LLMS' ) ) {
 	<div class="course-edit-section llms-form-field">
 		<?php
 		$vimeo->check_response();
+		wp_enqueue_script( Vimeo_LLMS::$token . '-js' );
 		wp_enqueue_style( Vimeo_LLMS::$token . '-css' );
 		$url = get_post_meta( get_the_ID(), 'vimeo_video', 'single' );
 		if ( $url ) {

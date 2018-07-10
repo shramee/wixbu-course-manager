@@ -105,7 +105,7 @@
 
 		<div class="llms-form-field llms-cols-4">
 			<button name="save" value="<?php echo wp_create_nonce( 'wixbu-cm-save-user-data' ) ?>" type="submit" class="llms-button-action">
-				<?php _e( 'Create', 'wixbu-course-manager' ) ?>
+				<?php _e( 'Save', 'wixbu-course-manager' ) ?>
 			</button>
 		</div>
 	</form>
