@@ -62,14 +62,16 @@
     font-weight: 400;
     text-transform: uppercase; }
 #wixbu-cm-edit-course section {
+  position: relative;
   padding: 2em 0; }
 
 #wixbu-cm form {
   margin: 0; }
 
-#wixbu-cm .button, #wixbu-cm .button-like,
+#wixbu-cm .button, #wixbu-cm .button-like, #wixbu-cm .button-inline,
 #vimeo-llms-upload-popup .button,
-#vimeo-llms-upload-popup .button-like {
+#vimeo-llms-upload-popup .button-like,
+#vimeo-llms-upload-popup .button-inline {
   border: 2px solid;
   font: inherit;
   background: #ffffff;
@@ -82,6 +84,11 @@
   box-sizing: border-box;
   text-align: center;
   text-transform: uppercase; }
+#wixbu-cm .button-inline,
+#vimeo-llms-upload-popup .button-inline {
+  display: inline-block;
+  width: auto;
+  line-height: 1; }
 #wixbu-cm .button,
 #vimeo-llms-upload-popup .button {
   cursor: pointer; }
@@ -103,7 +110,7 @@ div.course-edit-section {
   letter-spacing: 1px;
   padding: 1.6em 0;
   line-height: 40px;
-  max-width: 320px;
+  max-width: 400px;
   margin: auto;
   float: none; }
   div.course-edit-section:last-child {
@@ -112,14 +119,64 @@ div.course-edit-section {
     font: inherit;
     color: inherit;
     line-height: 40px; }
-  div.course-edit-section .course-edit-section-status {
-    font-size: 40px;
+  div.course-edit-section .step-number {
+    display: inline-block;
+    font-size: 41px;
+    font-weight: 900;
+    vertical-align: -.16em;
+    margin-right: 16px;
+    width: 20px;
+    text-align: center;
+    color: #0bd; }
+  div.course-edit-section .course-edit-section-pending,
+  div.course-edit-section .course-edit-section-done {
+    float: right;
+    width: 65px;
+    text-align: center;
+    background: #0bd;
+    color: #fff;
+    border-radius: 5px; }
+  div.course-edit-section .course-edit-section-done {
+    height: 30px;
+    background: center/contain no-repeat url("checkbox.png"); }
+  div.course-edit-section .course-edit-section-pending {
     float: right; }
-  div.course-edit-section .vimeo-llms-hd-video-wrap, div.course-edit-section img {
-    width: 250px;
-    margin: 0 auto 1.6em;
-    display: block; }
 
+.edit-course-preview-media .vimeo-llms-hd-video-wrap, .edit-course-preview-media .wixbu-cm-media-preview {
+  width: 320px;
+  height: 180px;
+  margin: 0 auto 1.6em;
+  display: block;
+  background: center/contain no-repeat url(img.svg); }
+  .edit-course-preview-media .vimeo-llms-hd-video-wrap.wixbu-cm-video-preview, .edit-course-preview-media .wixbu-cm-media-preview.wixbu-cm-video-preview {
+    background: center/contain no-repeat url(vid.svg); }
+.edit-course-preview-media .llms-cols-6 {
+  max-width: none;
+  float: left;
+  padding: 0 1.6em; }
+  .edit-course-preview-media .llms-cols-6 .button {
+    margin: 0; }
+
+.wixbu-cm-course-publish-error {
+  text-align: center;
+  position: absolute;
+  width: 100%;
+  opacity: 0;
+  transition: opacity .5s; }
+  .wixbu-cm-course-publish-error.show-error {
+    opacity: 1; }
+    .wixbu-cm-course-publish-error.show-error.wobble-error {
+      animation: shake 1.2s cubic-bezier(0.36, 0.07, 0.19, 0.97) both; }
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0); }
+  20%, 80% {
+    transform: translate3d(2px, 0, 0); }
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0); }
+  40%, 60% {
+    transform: translate3d(4px, 0, 0); } }
 [for="wixbu-feat-img"] .fa-spin {
   display: none; }
   form.uploading [for="wixbu-feat-img"] .fa-spin {

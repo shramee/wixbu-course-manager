@@ -20,8 +20,8 @@ if ( isset( $_GET['action'] ) && isset( $_GET['nonce'] ) && isset( $_GET['c'] ) 
 
 $query = new WP_Query( [
 	'post_type' => 'course',
-	'status' => 'any',
-//	'author' => get_current_user_id(),
+	'post_status' => 'any',
+	'author' => get_current_user_id(),
 ] );
 
 ?>

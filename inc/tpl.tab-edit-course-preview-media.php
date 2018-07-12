@@ -20,7 +20,7 @@ if ( class_exists( 'Vimeo_LLMS' ) ) {
 
 	$vimeo->enqueue();
 	?>
-	<div class="course-edit-section llms-form-field">
+	<div class="course-edit-section llms-form-field llms-cols-6">
 		<?php
 		$vimeo->check_response();
 		wp_enqueue_script( Vimeo_LLMS::$token . '-js' );
@@ -28,6 +28,8 @@ if ( class_exists( 'Vimeo_LLMS' ) ) {
 		$url = get_post_meta( get_the_ID(), 'vimeo_video', 'single' );
 		if ( $url ) {
 			echo $vimeo->iframe_from_url( $url );
+		} else {
+			echo "<div class='wixbu-cm-media-preview wixbu-cm-video-preview'></div>";
 		}
 		add_action( 'admin_footer', [ $this, 'upload_video_form' ] );
 		?>
@@ -45,12 +47,11 @@ if ( class_exists( 'Vimeo_LLMS' ) ) {
 	<?php
 }
 ?>
-<div class="course-edit-section llms-form-field">
+<div class="course-edit-section llms-form-field llms-cols-6">
 	<?php
 	$url = get_the_post_thumbnail_url( null, 'medium' );
-	if ( $url ) {
-		echo "<img src='$url' width='200' >";
-	}
+	$bg_img = $url ? "style='background-image:url($url)'" : '';
+	echo "<div class='wixbu-cm-media-preview wixbu-cm-img-preview' $bg_img></div>";
 	add_action( 'admin_footer', [ $this, 'upload_video_form' ] );
 	?>
 	<form method="post" enctype="multipart/form-data">
@@ -61,6 +62,6 @@ if ( class_exists( 'Vimeo_LLMS' ) ) {
 			</span>
 		</label>
 		<input style="display:none;" type="file" name="featured-image" id="wixbu-feat-img">
-		<?php wp_nonce_field( 'wixbu-cm-faet-img-upload' ) ?>
+		<?php wp_nonce_field( 'wixbu-cm-feat-img-upload' ) ?>
 	</form>
 </div>
